@@ -17,6 +17,7 @@ public class CursaAdapter extends RecyclerView.Adapter<CursaAdapter.CursaViewHol
 
     private Context context;
     private List<Cursa> cursaList;
+    private int index = -1;
 
     public CursaAdapter(Context context, List<Cursa> cursaList) {
         this.context = context;
@@ -36,7 +37,7 @@ public class CursaAdapter extends RecyclerView.Adapter<CursaAdapter.CursaViewHol
         holder.title.setText(cursa.getNom());
         holder.date.setText(cursa.getDataInici().toString()); // Format the date as needed
         holder.location.setText(cursa.getLloc());
-        holder.imageView.setImageBitmap(cursa.getFoto()); // Ensure that the image is set correctly
+        holder.imageView.setImageBitmap(cursa.getFoto()); // Ensure that the image is set correctlya
     }
 
     @Override
