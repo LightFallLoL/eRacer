@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.CursesFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#679AE6"
+        android:elevation="1dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:contentInsetStart="0dp"
+        android:contentInsetLeft="0dp"
+        android:contentInsetEnd="0dp"
+        android:contentInsetRight="0dp"/>
+
+    <ImageButton
+        android:layout_marginTop="10dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/search_icon"
+        android:layout_marginLeft="350dp"
+        android:elevation="5dp"
+        android:background="#679AE6"
+        android:scaleType="fitCenter"
+        android:id="@+id/btnSearch">
+    </ImageButton>
+
+    <ImageButton
+        android:id="@+id/btnDrawer"
+        android:layout_margin="10dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/boto_desplegable"
+        android:elevation="2dp"
+        android:background="#679AE6"
+        android:scaleType="fitCenter">
+
+    </ImageButton>
+
+
+    <EditText
+        android:id="@+id/edtBuscador"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="80dp"
+        android:background="@color/white"
+        android:elevation="10dp">
+    </EditText>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:layout_marginTop="100dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rcyCurses">
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.cardview.widget.CardView>
+
+
+</FrameLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_natacio"
+            android:title="Natació"
+            android:icon="@drawable/ic_swimming" />
+        <item
+            android:id="@+id/nav_running"
+            android:title="Running"
+            android:icon="@drawable/ic_running" />
+        <item
+            android:id="@+id/nav_walking"
+            android:title="Walking"
+            android:icon="@drawable/ic_walking" />
+        <item
+            android:id="@+id/nav_etc"
+            android:title="Bicycle"
+            android:icon="@drawable/ic_bicycle" />
+    </group>
+    <item android:title="Sistema">
+        <menu>
+            <item
+                android:id="@+id/nav_configuracio"
+                android:title="Configuració"
+                android:icon="@drawable/ic_settings" />
+        </menu>
+    </item>
+</menu>
