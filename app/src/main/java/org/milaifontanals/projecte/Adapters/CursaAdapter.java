@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import org.milaifontanals.projecte.Model.Cursa;
+import org.milaifontanals.projecte.R;
 
 public class CursaAdapter extends RecyclerView.Adapter<CursaAdapter.CursaViewHolder> {
 
