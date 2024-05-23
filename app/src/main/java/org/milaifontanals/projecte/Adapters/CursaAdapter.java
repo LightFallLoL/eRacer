@@ -17,7 +17,7 @@ public class CursaAdapter extends RecyclerView.Adapter<CursaAdapter.CursaViewHol
 
     private Context context;
     private List<Cursa> cursaList;
-    private int index = -1;
+    private int index = -2;
 
     public CursaAdapter(Context context, List<Cursa> cursaList) {
         this.context = context;
