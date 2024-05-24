@@ -1,6 +1,13 @@
 package org.milaifontanals.projecte.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class EstatsCursa {
+    @SerializedName("est_id")
+    private int id;
+
+    @SerializedName("est_nom")
+    private String nom;
     public EstatsCursa(int id, String nom) {
         this.id = id;
         this.nom = nom;
@@ -26,6 +33,5 @@ public class EstatsCursa {
         this.nom = nom;
     }
 
-    int id;
-    String nom;
+
 }

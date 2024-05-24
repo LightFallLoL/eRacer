@@ -2,9 +2,45 @@ package org.milaifontanals.projecte.Model;
 
 import android.graphics.Bitmap;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class Cursa {
+
+    @SerializedName("cur_id")
+    private int id;
+
+    @SerializedName("cur_nom")
+    private String nom;
+
+    @SerializedName("cur_data_inici")
+    private Date dataInici;
+
+    @SerializedName("cur_data_fi")
+    private Date dataFi;
+
+    @SerializedName("cur_lloc")
+    private String lloc;
+
+    @SerializedName("esport")
+    private Esport esport;
+
+    @SerializedName("estat")
+    private EstatsCursa estatCursa;
+
+    @SerializedName("cur_desc")
+    private String desc;
+
+    @SerializedName("cur_limit_inscr")
+    private int limitInscrits;
+
+    @SerializedName("cur_foto")
+    private String urlFoto;
+
+    private Bitmap foto; // Este campo no se serializa/deserializa directamente
+    @SerializedName("cur_web")
+    private String web;
     public int getId() {
         return id;
     }
@@ -77,11 +113,11 @@ public class Cursa {
         this.limitInscrits = limitInscrits;
     }
 
-    public char getUrlFoto() {
+    public String getUrlFoto() {
         return urlFoto;
     }
 
-    public void setUrlFoto(char urlFoto) {
+    public void setUrlFoto(String urlFoto) {
         this.urlFoto = urlFoto;
     }
 
@@ -101,21 +137,9 @@ public class Cursa {
         this.web = web;
     }
 
-    int id;
-    String nom;
-    Date dataInici;
-    Date dataFi;
-    String lloc;
-    Esport esport;
 
-    EstatsCursa estatCursa;
-    String desc;
-    int limitInscrits;
-    char urlFoto;
-    Bitmap foto;
-    String web;
 
-    public Cursa(int id, String nom, Date dataInici, Date dataFi, String lloc, Esport esport, EstatsCursa estatCursa, String desc, int limitInscrits, char urlFoto, Bitmap foto, String web) {
+    public Cursa(int id, String nom, Date dataInici, Date dataFi, String lloc, Esport esport, EstatsCursa estatCursa, String desc, int limitInscrits, String urlFoto, String web) {
         this.id = id;
         this.nom = nom;
         this.dataInici = dataInici;
@@ -126,7 +150,7 @@ public class Cursa {
         this.desc = desc;
         this.limitInscrits = limitInscrits;
         this.urlFoto = urlFoto;
-        this.foto = foto;
+        this.foto = null;
         this.web = web;
     }
 }

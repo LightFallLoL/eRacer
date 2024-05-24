@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import org.milaifontanals.projecte.Model.Cursa;
@@ -15,11 +16,11 @@ import org.milaifontanals.projecte.R;
 
 public class CursaAdapter extends RecyclerView.Adapter<CursaAdapter.CursaViewHolder> {
 
-    private Context context;
+    private Fragment context;
     private List<Cursa> cursaList;
     private int index = -2;
 
-    public CursaAdapter(Context context, List<Cursa> cursaList) {
+    public CursaAdapter(Fragment context, List<Cursa> cursaList) {
         this.context = context;
         this.cursaList = cursaList;
     }
@@ -27,7 +28,7 @@ public class CursaAdapter extends RecyclerView.Adapter<CursaAdapter.CursaViewHol
     @NonNull
     @Override
     public CursaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.cursa_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cursa_item, parent, false);
         return new CursaViewHolder(view);
     }
 

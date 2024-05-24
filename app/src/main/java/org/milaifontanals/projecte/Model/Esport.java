@@ -1,6 +1,15 @@
 package org.milaifontanals.projecte.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Esport {
+
+
+    @SerializedName("esp_id")
+    private int id;
+
+    @SerializedName("esp_nom")
+    private String nom;
     public Esport(int id, String nom) {
         this.id = id;
         this.nom = nom;
@@ -26,7 +35,6 @@ public class Esport {
         this.nom = nom;
     }
 
-    int id;
-    String nom;
+
 
 }
