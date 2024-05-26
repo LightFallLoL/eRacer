@@ -1,7 +1,8 @@
 package org.milaifontanals.projecte.Adapters;
 
-
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,19 +11,49 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
+
+import com.google.gson.Gson;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+
+import java.text.SimpleDateFormat;
 import java.util.List;
 import org.milaifontanals.projecte.Model.Cursa;
 import org.milaifontanals.projecte.R;
 
 public class CursaAdapter extends RecyclerView.Adapter<CursaAdapter.CursaViewHolder> {
 
-    private Fragment context;
+    private Context context;
     private List<Cursa> cursaList;
-    private int index = -2;
+    private SimpleDateFormat dateFormat;
+    private int index = -1;
 
-    public CursaAdapter(Fragment context, List<Cursa> cursaList) {
+    public List<Cursa> getCursaList() {
+        return cursaList;
+    }
+
+    public void setCursaList(List<Cursa> cursaList) {
+        this.cursaList = cursaList;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    ImageLoader imageLoader;
+
+    Gson gson = new Gson();
+    public CursaAdapter(Context context, List<Cursa> cursaList) {
         this.context = context;
         this.cursaList = cursaList;
+        this.dateFormat = new SimpleDateFormat("dd/MM/yyyy"); // Ajusta el formato según sea necesario
+        this.imageLoader = ImageLoader.getInstance();
     }
 
     @NonNull
@@ -34,11 +65,39 @@ public class CursaAdapter extends RecyclerView.Adapter<CursaAdapter.CursaViewHol
 
     @Override
     public void onBindViewHolder(@NonNull CursaViewHolder holder, int position) {
-        Cursa cursa = cursaList.get(position);
-        holder.title.setText(cursa.getNom());
-        holder.date.setText(cursa.getDataInici().toString()); // Format the date as needed
-        holder.location.setText(cursa.getLloc());
-        holder.imageView.setImageBitmap(cursa.getFoto()); // Ensure that the image is set correctlya
+        Cursa cursaActual = cursaList.get(position);
+        holder.title.setText(cursaActual.getNom());
+        holder.date.setText(dateFormat.format(cursaActual.getDataInici())); // Formatear la fecha
+        holder.location.setText(cursaActual.getLloc());
+
+        /// Aquí puedes agregar lógica para cargar imágenes si no son bitmaps
+        if (cursaActual.getBitmap() != null) {
+            holder.imageView.setImageBitmap(cursaActual.getBitmap());
+        } else {
+            holder.imageView.setImageResource(R.drawable.ic_launcher_background);
+            imageLoader.loadImage(cursaActual.getUrlFoto(), new ImageLoadingListener() {
+                @Override
+                public void onLoadingStarted(String imageUri, View view) {
+
+                }
+
+                @Override
+                public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+
+                }
+
+                @Override
+                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                    cursaActual.setBitmap(loadedImage);
+                    holder.imageView.setImageBitmap(loadedImage);
+                }
+
+                @Override
+                public void onLoadingCancelled(String imageUri, View view) {
+
+                }
+            });
+        }
     }
 
     @Override
@@ -52,10 +111,10 @@ public class CursaAdapter extends RecyclerView.Adapter<CursaAdapter.CursaViewHol
 
         public CursaViewHolder(@NonNull View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.title);
-            date = itemView.findViewById(R.id.date);
-            location = itemView.findViewById(R.id.location);
-            imageView = itemView.findViewById(R.id.imageView);
+            title = itemView.findViewById(R.id.txvTitle);
+            date = itemView.findViewById(R.id.txvDate);
+            location = itemView.findViewById(R.id.txvLocation);
+            imageView = itemView.findViewById(R.id.imvCursa);
         }
     }
 }

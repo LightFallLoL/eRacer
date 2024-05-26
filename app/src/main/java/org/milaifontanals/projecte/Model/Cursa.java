@@ -38,7 +38,7 @@ public class Cursa {
     @SerializedName("cur_foto")
     private String urlFoto;
 
-    private Bitmap foto; // Este campo no se serializa/deserializa directamente
+    private Bitmap bitmap; // Este campo no se serializa/deserializa directamente
     @SerializedName("cur_web")
     private String web;
     public int getId() {
@@ -121,12 +121,12 @@ public class Cursa {
         this.urlFoto = urlFoto;
     }
 
-    public Bitmap getFoto() {
-        return foto;
+    public Bitmap getBitmap() {
+        return bitmap;
     }
 
-    public void setFoto(Bitmap foto) {
-        this.foto = foto;
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 
     public String getWeb() {
@@ -150,7 +150,7 @@ public class Cursa {
         this.desc = desc;
         this.limitInscrits = limitInscrits;
         this.urlFoto = urlFoto;
-        this.foto = null;
+        this.bitmap = null;
         this.web = web;
     }
 }

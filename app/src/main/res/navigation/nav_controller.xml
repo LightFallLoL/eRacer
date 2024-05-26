@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_controller">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_controller"
+    app:startDestination="@id/cursesFragment">
 
+    <fragment
+        android:id="@+id/cursesFragment"
+        android:name="org.milaifontanals.projecte.Fragments.CursesFragment"
+        android:label="Curses"
+        tools:layout="@layout/fragment_curses">
+        <argument
+            android:name="sportType"
+            app:argType="string"
+            android:defaultValue="All"/>
+    </fragment>
 
-    
+    <!-- Define otros fragmentos aquí si es necesario -->
 
 </navigation>

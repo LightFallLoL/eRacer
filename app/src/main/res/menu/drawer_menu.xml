@@ -10,7 +10,15 @@
             android:title="Running"
             android:icon="@drawable/ic_running" />
         <item
-            android:id="@+id/nav_walking"
+            android:id="@+id/nav_cycling"
+            android:title="Walking"
+            android:icon="@drawable/ic_walking" />
+        <item
+            android:id="@+id/nav_moto"
+            android:title="Moto"
+            android:icon="@drawable/ic_walking" />
+        <item
+            android:id="@+id/nav_trail"
             android:title="Walking"
             android:icon="@drawable/ic_walking" />
         <item
