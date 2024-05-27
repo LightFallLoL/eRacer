@@ -37,7 +37,7 @@
 
     <EditText
         android:id="@+id/edtBuscador"
-        android:layout_width="250dp"
+        android:layout_width="290dp"
         android:layout_height="30dp"
         android:layout_marginTop="18dp"
         android:layout_marginLeft="80dp"
@@ -53,16 +53,43 @@
         android:layout_marginTop="55dp"
         android:elevation="2dp"
         android:src="@drawable/ic_all" />
-
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="Data: "
+        android:elevation="2dp"
+        android:layout_marginLeft="80dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginTop="65dp"
+        ></TextView>
     <Spinner
         android:layout_marginTop="60dp"
-        android:layout_marginLeft="80dp"
+        android:layout_marginLeft="120dp"
         android:id="@+id/spnFiltre"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="30dp"
         android:background="@android:color/white"
         android:spinnerMode="dropdown"
         android:elevation="2dp"/>
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text="Estat: "
+        android:elevation="2dp"
+        android:layout_marginLeft="225dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginTop="65dp"
+        ></TextView>
+    <Spinner
+        android:id="@+id/spnEstat"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="270dp"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:background="@android:color/white"
+        android:elevation="3dp"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

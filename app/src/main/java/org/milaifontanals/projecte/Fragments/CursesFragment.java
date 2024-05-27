@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,7 +32,9 @@ import org.milaifontanals.projecte.API.ApiService;
 import org.milaifontanals.projecte.API.RetrofitClient;
 import org.milaifontanals.projecte.Adapters.CursaAdapter;
 import org.milaifontanals.projecte.Model.Cursa;
-import org.milaifontanals.projecte.Model.CursaResponse;
+import org.milaifontanals.projecte.Model.EstatsCursa;
+import org.milaifontanals.projecte.Model.Response.CursaResponse;
+import org.milaifontanals.projecte.Model.Response.EstatCursaResponse;
 import org.milaifontanals.projecte.R;
 import org.milaifontanals.projecte.Utils.GridSpacingItemDecoration;
 
@@ -44,7 +45,6 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 import retrofit2.Call;
@@ -60,6 +60,9 @@ public class CursesFragment extends Fragment {
     private List<Cursa> cursaList;
     private EditText edtBuscador;
     private Spinner spinnerFilter;
+    private Spinner spinnerEstat;
+    private List<EstatsCursa> estatCursaList;
+
 
     private int sportTypeId;
     @Override
@@ -70,7 +73,7 @@ public class CursesFragment extends Fragment {
             sportTypeId = getArguments().getInt("sportTypeId", -1);  // -1 es el valor por defecto para "All"
         }
         cursaList = new ArrayList<>();
-        loadCurses();
+        loadEstatsCursa();
 
     }
 
@@ -95,7 +98,7 @@ public class CursesFragment extends Fragment {
         ImageView imgViewIcon = view.findViewById(R.id.imvEsport);
         edtBuscador = view.findViewById(R.id.edtBuscador);
         spinnerFilter = view.findViewById(R.id.spnFiltre);
-
+        spinnerEstat = view.findViewById(R.id.spnEstat);
 
             updateSportIcon(imgViewIcon, sportTypeId);
 
@@ -106,6 +109,11 @@ public class CursesFragment extends Fragment {
                 R.array.date_filters, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerFilter.setAdapter(adapter);
+
+        ArrayAdapter<CharSequence> stateAdapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.state_filters, android.R.layout.simple_spinner_item);
+        stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerEstat.setAdapter(stateAdapter);
 
         // Configurar RecyclerView
         recyclerView = view.findViewById(R.id.rcyCurses);
@@ -123,6 +131,18 @@ public class CursesFragment extends Fragment {
         recyclerView.setAdapter(cursaAdapter);
 
         spinnerFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                filterCurses();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        spinnerEstat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 filterCurses();
@@ -167,8 +187,11 @@ public class CursesFragment extends Fragment {
                     for (Cursa cursa : curses) {
                         Log.d("CursesFragment", "Cursa: " +cursa.toString());
                     }
-                    cursaList = new ArrayList<>(curses);
                     sortCursesByDateDesc(curses);
+                    curses = filterCursesByState(curses);
+                    cursaList = new ArrayList<>(curses);
+
+
                     if (sportTypeId != -1) {
                         cursaList = filterCursesBySportType(cursaList, sportTypeId);
                     }
@@ -248,49 +271,82 @@ public class CursesFragment extends Fragment {
 
     private void filterCurses() {
         String query = edtBuscador.getText().toString().toLowerCase();
-        String filter = spinnerFilter.getSelectedItem().toString();
+        String dateFilter = spinnerFilter.getSelectedItem().toString();
+        String stateFilter = spinnerEstat.getSelectedItem().toString();
         List<Cursa> filteredCurses = new ArrayList<>();
 
         Calendar calendar = Calendar.getInstance();
         Date now = new Date();
 
         for (Cursa cursa : cursaList) {
-            boolean matchesQuery = query.isEmpty() || cursa.getNom().toLowerCase().contains(query);
-            boolean matchesFilter = false;
+            boolean matchesQuery = query.isEmpty() ||
+                    cursa.getNom().toLowerCase().contains(query) ||
+                    cursa.getLloc().toLowerCase().contains(query);
+            boolean matchesDateFilter = false;
+            boolean matchesStateFilter = stateFilter.equals("Mostrar Tot") || cursa.getEstatCursa().getNom().equals(stateFilter);
 
-            switch (filter) {
+            switch (dateFilter) {
                 case "Mostrar tot":
-                    matchesFilter = true;
+                    matchesDateFilter = true;
                     break;
                 case "Aquesta setmana":
                     calendar.setTime(now);
                     int currentWeek = calendar.get(Calendar.WEEK_OF_YEAR);
                     calendar.setTime(cursa.getDataInici());
                     int cursaWeek = calendar.get(Calendar.WEEK_OF_YEAR);
-                    matchesFilter = currentWeek == cursaWeek;
+                    matchesDateFilter = currentWeek == cursaWeek;
                     break;
                 case "Aquest mes":
                     calendar.setTime(now);
                     int currentMonth = calendar.get(Calendar.MONTH);
                     calendar.setTime(cursa.getDataInici());
                     int cursaMonth = calendar.get(Calendar.MONTH);
-                    matchesFilter = currentMonth == cursaMonth;
+                    matchesDateFilter = currentMonth == cursaMonth;
                     break;
                 case "Aquest any":
                     calendar.setTime(now);
                     int currentYear = calendar.get(Calendar.YEAR);
                     calendar.setTime(cursa.getDataInici());
                     int cursaYear = calendar.get(Calendar.YEAR);
-                    matchesFilter = currentYear == cursaYear;
+                    matchesDateFilter = currentYear == cursaYear;
                     break;
             }
 
-            if (matchesQuery && matchesFilter) {
+            if (matchesQuery && matchesDateFilter && matchesStateFilter) {
                 filteredCurses.add(cursa);
             }
         }
 
         cursaAdapter.setCursaList(filteredCurses);
         cursaAdapter.notifyDataSetChanged();
+    }
+
+    private void loadEstatsCursa() {
+        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+        Call<EstatCursaResponse> call = apiService.getAllEstatsCursa();
+        call.enqueue(new Callback<EstatCursaResponse>() {
+            @Override
+            public void onResponse(Call<EstatCursaResponse> call, Response<EstatCursaResponse> response) {
+                if (response.isSuccessful()) {
+                    estatCursaList = response.body().getEstatsCursa();
+                    loadCurses();
+                } else {
+                    Log.e("CursesFragment", "Failed to load estats_cursa: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<EstatCursaResponse> call, Throwable t) {
+                Log.e("CursesFragment", "Error loading estats_cursa", t);
+            }
+        });
+    }
+    private List<Cursa> filterCursesByState(List<Cursa> curses) {
+        return curses.stream()
+                .filter(cursa -> {
+                    String estatNom = cursa.getEstatCursa().getNom();
+                    return estatNom.equals("Inscripció Oberta") || estatNom.equals("Finalitzada");
+                })
+                .collect(Collectors.toList());
     }
 }

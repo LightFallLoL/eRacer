@@ -23,7 +23,23 @@
         <argument
             android:name="cursa"
             app:argType="org.milaifontanals.projecte.Model.Cursa" />
+        <action
+            android:id="@+id/action_cursaDetailFragment_to_inscripcioFragment"
+            app:destination="@id/inscripcioFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/inscripcioFragment"
+        android:name="org.milaifontanals.projecte.Fragments.InscripcioFragment"
+        android:label="Cursa Inscripcio"
+        tools:layout="@layout/fragment_inscripcio">
+        <argument
+            android:name="cursa"
+            app:argType="org.milaifontanals.projecte.Model.Cursa" />
+        <argument
+            android:name="circuit"
+            app:argType="org.milaifontanals.projecte.Model.Circuit" />
+    </fragment>
+
 
 
 

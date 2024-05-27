@@ -2,10 +2,11 @@ package org.milaifontanals.projecte.Model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Circuit {
+public class Circuit implements Serializable {
     @SerializedName("cir_id")
     private int id;
 
