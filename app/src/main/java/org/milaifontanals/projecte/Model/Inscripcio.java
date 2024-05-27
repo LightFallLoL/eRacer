@@ -1,57 +1,69 @@
 package org.milaifontanals.projecte.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class Inscripcio {
-    public Inscripcio(int id, int participantId, Date data, int dorsal, boolean retirat, int bea_id, int circuitsCatId) {
-        this.id = id;
-        this.participantId = participantId;
-        this.data = data;
+    @SerializedName("ins_id")
+    private int insId;
+
+    @SerializedName("ins_par_id")
+    private int parId;
+
+    @SerializedName("ins_data")
+    private Date insData;
+
+    @SerializedName("ins_dorsal")
+    private int dorsal;
+
+    @SerializedName("ins_retirat")
+    private Boolean retirat;
+
+    @SerializedName("ins_bea_id")
+    private Integer beaId;
+
+    @SerializedName("ins_ccc_id")
+    private int cccId;
+
+    @SerializedName("ins_checkpoints")
+    private int checkpoints;
+
+
+    public Inscripcio(int insId, int parId, Date insData, int dorsal, Boolean retirat, Integer beaId, int cccId, int checkpoints) {
+        this.insId = insId;
+        this.parId = parId;
+        this.insData = insData;
         this.dorsal = dorsal;
         this.retirat = retirat;
-        this.bea_id = bea_id;
-        this.circuitsCatId = circuitsCatId;
+        this.beaId = beaId;
+        this.cccId = cccId;
+        this.checkpoints = checkpoints;
     }
 
-    int id;
-    int participantId;
-    Date data;
-    int dorsal;
-    boolean retirat;
-    int bea_id;
+    public int getInsId() {
 
-    public int getBea_id() {
-        return bea_id;
+        return insId;
     }
 
-    public void setBea_id(int bea_id) {
-        this.bea_id = bea_id;
+    public void setInsId(int insId) {
+        this.insId = insId;
     }
 
-    int circuitsCatId;
-
-    public int getId() {
-        return id;
+    public int getParId() {
+        return parId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setParId(int parId) {
+        this.parId = parId;
     }
 
-    public int getParticipantId() {
-        return participantId;
+    public Date getInsData() {
+        return insData;
     }
 
-    public void setParticipantId(int participantId) {
-        this.participantId = participantId;
-    }
-
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
+    public void setInsData(Date insData) {
+        this.insData = insData;
     }
 
     public int getDorsal() {
@@ -62,19 +74,35 @@ public class Inscripcio {
         this.dorsal = dorsal;
     }
 
-    public boolean isRetirat() {
+    public Boolean getRetirat() {
         return retirat;
     }
 
-    public void setRetirat(boolean retirat) {
+    public void setRetirat(Boolean retirat) {
         this.retirat = retirat;
     }
 
-    public int getCircuitsCatId() {
-        return circuitsCatId;
+    public Integer getBeaId() {
+        return beaId;
     }
 
-    public void setCircuitsCatId(int circuitsCatId) {
-        this.circuitsCatId = circuitsCatId;
+    public void setBeaId(Integer beaId) {
+        this.beaId = beaId;
+    }
+
+    public int getCccId() {
+        return cccId;
+    }
+
+    public void setCccId(int cccId) {
+        this.cccId = cccId;
+    }
+
+    public int getCheckpoints() {
+        return checkpoints;
+    }
+
+    public void setCheckpoints(int checkpoints) {
+        this.checkpoints = checkpoints;
     }
 }

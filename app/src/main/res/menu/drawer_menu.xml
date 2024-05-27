@@ -6,25 +6,25 @@
             android:title="Natació"
             android:icon="@drawable/ic_swimming" />
         <item
-            android:id="@+id/nav_running"
-            android:title="Running"
-            android:icon="@drawable/ic_running" />
-        <item
             android:id="@+id/nav_cycling"
-            android:title="Walking"
+            android:title="Ciclisme"
+            android:icon="@drawable/ic_bicycle" />
+        <item
+            android:id="@+id/nav_trail"
+            android:title="Trail"
             android:icon="@drawable/ic_walking" />
         <item
             android:id="@+id/nav_moto"
             android:title="Moto"
-            android:icon="@drawable/ic_walking" />
+            android:icon="@drawable/ic_moto" />
         <item
-            android:id="@+id/nav_trail"
+            android:id="@+id/nav_running"
             android:title="Walking"
             android:icon="@drawable/ic_walking" />
         <item
             android:id="@+id/nav_etc"
-            android:title="Bicycle"
-            android:icon="@drawable/ic_bicycle" />
+            android:title="Tots"
+            android:icon="@drawable/ic_all" />
     </group>
     <item android:title="Sistema">
         <menu>

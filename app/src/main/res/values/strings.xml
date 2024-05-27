@@ -4,4 +4,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
+    <string-array name="date_filters">
+        <item>Mostrar tot</item>
+        <item>Aquesta Setmana</item>
+        <item>Aquest mes</item>
+        <item>Aquest any</item>
+    </string-array>
 </resources>

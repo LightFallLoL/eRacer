@@ -20,17 +20,7 @@
         android:contentInsetEnd="0dp"
         android:contentInsetRight="0dp"/>
 
-    <ImageButton
-        android:layout_marginTop="10dp"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:src="@drawable/search_icon"
-        android:layout_marginLeft="350dp"
-        android:elevation="5dp"
-        android:background="#679AE6"
-        android:scaleType="fitCenter"
-        android:id="@+id/btnSearch">
-    </ImageButton>
+
 
     <ImageButton
         android:id="@+id/btnDrawer"
@@ -54,6 +44,26 @@
         android:background="@color/white"
         android:elevation="10dp">
     </EditText>
+
+    <ImageView
+        android:id="@+id/imvEsport"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="55dp"
+        android:elevation="2dp"
+        android:src="@drawable/ic_all" />
+
+    <Spinner
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="80dp"
+        android:id="@+id/spnFiltre"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:background="@android:color/white"
+        android:spinnerMode="dropdown"
+        android:elevation="2dp"/>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent" android:layout_marginTop="100dp">

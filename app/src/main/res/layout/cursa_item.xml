@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="8dp"
-    android:background="@color/white">
+    android:background="@color/gris"
+    android:id="@+id/clyItem">
 
     <ImageView
         android:id="@+id/imvCursa"

@@ -38,15 +38,15 @@
 
     <TextView
         android:id="@+id/txvWeb"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:textSize="17dp"
-        android:textColor="@color/link"
         android:text="www.google.com"
+        android:textColor="@color/link"
+        android:textSize="15dp"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txvLocation"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/view2"></TextView>
 
     <View
         android:id="@+id/view"
@@ -63,7 +63,7 @@
         android:id="@+id/imvCursa"
         android:layout_width="220dp"
         android:layout_height="220dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,12 +81,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcyCircuits"
-        android:layout_marginLeft="20dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         app:layout_constraintBottom_toTopOf="@+id/btnInscripcio"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2"
+        app:layout_constraintTop_toBottomOf="@+id/txvWeb"
         app:layout_constraintVertical_bias="0.28"></androidx.recyclerview.widget.RecyclerView>
 
     <Button

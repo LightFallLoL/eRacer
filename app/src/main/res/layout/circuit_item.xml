@@ -3,36 +3,62 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_margin="20dp"
-    android:layout_height="150dp">
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="@drawable/rounded_corner"
+    android:elevation="4dp">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvCircuitTitle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="NOM CIRCUIT"
-        android:textSize="35dp"
+        android:text="TITOL CIRCUIT"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></TextView>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvCircuitPrice"
+        app:layout_constraintBottom_toTopOf="@+id/tvEstimatedTime" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvEstimatedTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Temps estimat:"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Temps Estimat: 2H 30MIN"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/tvCircuitTitle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
     <TextView
+        android:id="@+id/tvDistance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2:30h"
-        android:layout_marginLeft="8dp"
-        android:textSize="25dp"
+        android:text="70 Km"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@+id/tvEstimatedTime"
+        app:layout_constraintTop_toBottomOf="@+id/tvCircuitTitle"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView"></TextView>
+        app:layout_constraintEnd_toStartOf="@+id/tvCircuitPrice"
+        app:layout_constraintHorizontal_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/tvCircuitPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="115€"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:background="@android:color/holo_blue_light"
+        android:padding="8dp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

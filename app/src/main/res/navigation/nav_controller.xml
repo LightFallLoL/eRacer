@@ -10,11 +10,22 @@
         android:name="org.milaifontanals.projecte.Fragments.CursesFragment"
         android:label="Curses"
         tools:layout="@layout/fragment_curses">
-        <argument
-            android:name="sportType"
-            app:argType="string"
-            android:defaultValue="All"/>
+        <action
+            android:id="@+id/action_cursesFragment_to_cursaDetailFragment"
+            app:destination="@id/cursaDetailFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/cursaDetailFragment"
+        android:name="org.milaifontanals.projecte.Fragments.CursaInFragment"
+        android:label="Cursa Detail"
+        tools:layout="@layout/fragment_in_cursa">
+        <argument
+            android:name="cursa"
+            app:argType="org.milaifontanals.projecte.Model.Cursa" />
+    </fragment>
+
+
 
     <!-- Define otros fragmentos aquí si es necesario -->
 

@@ -4,9 +4,11 @@ import android.graphics.Bitmap;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-public class Cursa {
+public class Cursa implements Serializable {
 
     @SerializedName("cur_id")
     private int id;
@@ -41,6 +43,18 @@ public class Cursa {
     private Bitmap bitmap; // Este campo no se serializa/deserializa directamente
     @SerializedName("cur_web")
     private String web;
+
+    @SerializedName("circuits")
+    private List<Circuit> circuits;
+
+    public List<Circuit> getCircuits() {
+        return circuits;
+    }
+
+    public void setCircuits(List<Circuit> circuits) {
+        this.circuits = circuits;
+    }
+
     public int getId() {
         return id;
     }

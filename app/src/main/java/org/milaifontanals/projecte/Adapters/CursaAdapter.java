@@ -3,13 +3,20 @@ package org.milaifontanals.projecte.Adapters;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.media.Image;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -25,7 +32,7 @@ import org.milaifontanals.projecte.R;
 
 public class CursaAdapter extends RecyclerView.Adapter<CursaAdapter.CursaViewHolder> {
 
-    private Context context;
+    private Fragment context;
     private List<Cursa> cursaList;
     private SimpleDateFormat dateFormat;
     private int index = -1;
@@ -35,7 +42,13 @@ public class CursaAdapter extends RecyclerView.Adapter<CursaAdapter.CursaViewHol
     }
 
     public void setCursaList(List<Cursa> cursaList) {
-        this.cursaList = cursaList;
+
+        if (cursaList != null) {
+            this.cursaList = cursaList;
+            notifyDataSetChanged();
+        } else {
+            Log.e("CursaAdapter", "Cursa list is null");
+        }
     }
 
     public int getIndex() {
@@ -49,7 +62,7 @@ public class CursaAdapter extends RecyclerView.Adapter<CursaAdapter.CursaViewHol
     ImageLoader imageLoader;
 
     Gson gson = new Gson();
-    public CursaAdapter(Context context, List<Cursa> cursaList) {
+    public CursaAdapter(Fragment context, List<Cursa> cursaList) {
         this.context = context;
         this.cursaList = cursaList;
         this.dateFormat = new SimpleDateFormat("dd/MM/yyyy"); // Ajusta el formato según sea necesario
@@ -98,6 +111,13 @@ public class CursaAdapter extends RecyclerView.Adapter<CursaAdapter.CursaViewHol
                 }
             });
         }
+        holder.clyItem.setOnClickListener(v -> {
+            NavController navController = NavHostFragment.findNavController(context);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("cursa", cursaActual);
+            navController.navigate(R.id.action_cursesFragment_to_cursaDetailFragment, bundle);
+        });
+
     }
 
     @Override
@@ -108,6 +128,7 @@ public class CursaAdapter extends RecyclerView.Adapter<CursaAdapter.CursaViewHol
     public static class CursaViewHolder extends RecyclerView.ViewHolder {
         TextView title, date, location;
         ImageView imageView;
+        ConstraintLayout clyItem;
 
         public CursaViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -115,6 +136,7 @@ public class CursaAdapter extends RecyclerView.Adapter<CursaAdapter.CursaViewHol
             date = itemView.findViewById(R.id.txvDate);
             location = itemView.findViewById(R.id.txvLocation);
             imageView = itemView.findViewById(R.id.imvCursa);
+            clyItem = itemView.findViewById(R.id.clyItem);
         }
     }
 }
