@@ -1,6 +1,7 @@
 package org.milaifontanals.projecte.Fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,9 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.flexbox.FlexboxLayout;
 
+import org.milaifontanals.projecte.Model.Categoria;
+import org.milaifontanals.projecte.Model.Circuit;
+import org.milaifontanals.projecte.Model.Cursa;
 import org.milaifontanals.projecte.R;
 
 import java.util.ArrayList;
@@ -27,16 +31,30 @@ public class InscripcioFragment extends Fragment {
 
     private FlexboxLayout flexboxLayout;
     private Spinner spnCategoria;
+    private List<Categoria> categoriesList;
+    private TextView txvTitol;
+
     private List<String> categoriesSeleccionades;
 
     private EditText etNumF;
     private RadioGroup radioGroup;
     private RadioButton radioButtonSi, radioButtonNo;
-
+    private Cursa selectedCursa;
+    private Circuit selectedCircuit;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         categoriesSeleccionades = new ArrayList<>();
+        if (getArguments() != null) {
+            selectedCircuit = (Circuit) getArguments().getSerializable("circuit");
+            selectedCursa = (Cursa) getArguments().getSerializable("cursa");
+            if (selectedCircuit != null) {
+                categoriesList = selectedCircuit.getCategories();
+            } else {
+                // Manejar el caso donde selectedCircuit es null
+                Log.e("InscripcioFragment", "Circuito no recibido correctamente");
+            }
+        }
     }
 
     @Nullable
@@ -50,7 +68,7 @@ public class InscripcioFragment extends Fragment {
         radioGroup = view.findViewById(R.id.rgFederat);
         radioButtonSi = view.findViewById(R.id.rbSi);
         radioButtonNo = view.findViewById(R.id.rbNo);
-
+        txvTitol = view.findViewById(R.id.tvCircuitCursa);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -61,13 +79,17 @@ public class InscripcioFragment extends Fragment {
                 }
             }
         });
+        if (categoriesList != null) {
+            List<String> categoriesNames = new ArrayList<>();
+            for (Categoria categoria : categoriesList) {
+                categoriesNames.add(categoria.getCategoria().getCatNom());
+            }
 
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
-                R.array.categories_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spnCategoria.setAdapter(adapter);
-
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
+                    android.R.layout.simple_spinner_item, categoriesNames);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spnCategoria.setAdapter(adapter);
+        }
         spnCategoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -83,6 +105,7 @@ public class InscripcioFragment extends Fragment {
             }
         });
 
+        txvTitol.setText(selectedCircuit.getNom() +" - "+ selectedCursa.getNom());
         return view;
     }
 
