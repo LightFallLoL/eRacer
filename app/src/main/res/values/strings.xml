@@ -10,15 +10,11 @@
         <item>Aquest mes</item>
         <item>Aquest any</item>
     </string-array>
-    <string-array name="categories_array">
-        <item>Mostrar tot</item>
-        <item>Aquesta Setmana</item>
-        <item>Aquest mes</item>
-        <item>Aquest any</item>
-    </string-array>
+
     <string-array name="state_filters">
         <item>Mostrar Tot</item>
         <item>Inscripció Oberta</item>
+        <item>En Curs</item>
         <item>Finalitzada</item>
     </string-array>
 </resources>

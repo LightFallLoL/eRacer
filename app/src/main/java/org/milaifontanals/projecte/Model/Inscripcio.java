@@ -12,7 +12,7 @@ public class Inscripcio {
     private int parId;
 
     @SerializedName("ins_data")
-    private Date insData;
+    private String insData;
 
     @SerializedName("ins_dorsal")
     private int dorsal;
@@ -24,21 +24,56 @@ public class Inscripcio {
     private Integer beaId;
 
     @SerializedName("ins_ccc_id")
-    private int cccId;
-
-    @SerializedName("ins_checkpoints")
-    private int checkpoints;
+    private int categoriaCircuitId;
 
 
-    public Inscripcio(int insId, int parId, Date insData, int dorsal, Boolean retirat, Integer beaId, int cccId, int checkpoints) {
+
+    public Inscripcio() {
+    }
+
+    public Inscripcio(int insId, int parId, String insData, int dorsal, Boolean retirat, Integer beaId, int cccId, int checkpoints, Participant participant) {
         this.insId = insId;
         this.parId = parId;
         this.insData = insData;
         this.dorsal = dorsal;
         this.retirat = retirat;
         this.beaId = beaId;
-        this.cccId = cccId;
-        this.checkpoints = checkpoints;
+        this.categoriaCircuitId = cccId;
+
+       // this.participant = participant;
+    }
+    public Inscripcio(int parId, String insData, int dorsal, Boolean retirat, Integer beaId, int cccId, int checkpoints, Participant participant) {
+        this.parId = parId;
+        this.insData = insData;
+        this.dorsal = dorsal;
+        this.retirat = retirat;
+        this.beaId = beaId;
+        this.categoriaCircuitId = cccId;
+       // this.participant = participant;
+    }
+
+    public Inscripcio(int parId, String insData, int dorsal, Boolean retirat, Integer beaId, int categoriaCircuitId) {
+        this.insId = insId;
+        this.parId = parId;
+        this.insData = insData;
+        this.dorsal = dorsal;
+        this.retirat = retirat;
+        this.beaId = beaId;
+        this.categoriaCircuitId = categoriaCircuitId;
+    }
+
+    //public Participant getParticipant() {    return participant;    }
+
+   // public void setParticipant(Participant participant) {        this.participant = participant;    }
+
+    public Inscripcio(int insId, int parId, String insData, int dorsal, Boolean retirat, Integer beaId, int cccId, int checkpoints) {
+        this.insId = insId;
+        this.parId = parId;
+        this.insData = insData;
+        this.dorsal = dorsal;
+        this.retirat = retirat;
+        this.beaId = beaId;
+        this.categoriaCircuitId = cccId;
     }
 
     public int getInsId() {
@@ -58,11 +93,11 @@ public class Inscripcio {
         this.parId = parId;
     }
 
-    public Date getInsData() {
+    public String getInsData() {
         return insData;
     }
 
-    public void setInsData(Date insData) {
+    public void setInsData(String insData) {
         this.insData = insData;
     }
 
@@ -90,19 +125,13 @@ public class Inscripcio {
         this.beaId = beaId;
     }
 
-    public int getCccId() {
-        return cccId;
+    public int getcategoriaCircuitId() {
+        return categoriaCircuitId;
     }
 
-    public void setCccId(int cccId) {
-        this.cccId = cccId;
+    public void setCategoriaCircuitId(int cccId) {
+        this.categoriaCircuitId = cccId;
     }
 
-    public int getCheckpoints() {
-        return checkpoints;
-    }
 
-    public void setCheckpoints(int checkpoints) {
-        this.checkpoints = checkpoints;
-    }
 }

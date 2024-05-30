@@ -340,7 +340,7 @@ public class CursesFragment extends Fragment {
         return curses.stream()
                 .filter(cursa -> {
                     String estatNom = cursa.getEstatCursa().getNom();
-                    return estatNom.equals("Inscripció Oberta") || estatNom.equals("Finalitzada");
+                    return estatNom.equals("Inscripció Oberta") || estatNom.equals("Finalitzada") ||estatNom.equals("En Curs");
                 })
                 .collect(Collectors.toList());
     }
