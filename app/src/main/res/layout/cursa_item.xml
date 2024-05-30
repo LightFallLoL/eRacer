@@ -2,11 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="200dp"
+    android:layout_width="175dp"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="8dp"
-    android:background="@color/gris"
+    android:padding="10dp"
+    android:layout_margin="10dp"
+    android:background="@drawable/blue_white_background_rounded"
     android:id="@+id/clyItem">
 
     <ImageView
@@ -35,7 +35,7 @@
         android:id="@+id/txvDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="4dp"
+        android:layout_marginTop="15dp"
         android:text="Date"
         app:layout_constraintBottom_toTopOf="@+id/txvLocation"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +46,7 @@
         android:id="@+id/txvLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="4dp"
+        android:layout_marginTop="15dp"
         android:text="Location"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:padding="16dp"
     android:background="@drawable/item_background_selector"
-    android:elevation="4dp">
+    android:elevation="4dp"
+    android:layout_margin="20dp">
 
     <TextView
         android:id="@+id/tvCircuitTitle"

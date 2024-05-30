@@ -120,11 +120,6 @@ public class CursesFragment extends Fragment {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2); // Número de columnas
         recyclerView.setLayoutManager(gridLayoutManager);
 
-        // Añadir GridItemDecoration para la separación entre items
-        int space = 10; // Espacio en píxeles entre los ítems
-        int color = getResources().getColor(android.R.color.darker_gray); // Color del espacio
-        GridSpacingItemDecoration itemDecoration = new GridSpacingItemDecoration(getContext(), color, space);
-        recyclerView.addItemDecoration(itemDecoration);
 
         // Inicializar el adaptador con la lista vacía
         cursaAdapter = new CursaAdapter(this, cursaList);

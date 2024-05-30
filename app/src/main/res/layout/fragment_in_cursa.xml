@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/blue_white_background">
 
     <TextView
         android:id="@+id/txvTitol"
@@ -11,6 +12,7 @@
         android:layout_height="0dp"
         android:textSize="30dp"
         android:text="La Campana"
+        android:fontFamily="sans-serif-medium"
         android:layout_margin="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></TextView>
@@ -49,21 +51,41 @@
         app:layout_constraintTop_toBottomOf="@+id/view2"></TextView>
 
     <View
-        android:id="@+id/view"
-        android:layout_width="300dp"
+        android:id="@+id/view24"
+        android:layout_width="370dp"
         android:layout_height="2dp"
         android:background="@color/black"
-        android:layout_marginTop="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/txvDesc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvLocation"></View>
+    <TextView
+        android:id="@+id/txvDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="160dp"
+        android:layout_marginTop="4dp"
+        android:padding="20dp"
+        android:text="La Steel Man es una carrera de resistencia que desafía a los participantes a superar sus límites físicos y mentales en un entorno desafiante y emocionante. Inspirada en la fortaleza del acero, esta carrera ofrece una experiencia única llena de obstáculos y desafíos diseñados para poner a prueba la fuerza, la resistencia y la determinación de los participantes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvLocation"></TextView>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="370dp"
+        android:layout_height="2dp"
+        android:background="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txvLocation"></View>
+        app:layout_constraintTop_toBottomOf="@+id/txvDesc"></View>
 
     <ImageView
         android:id="@+id/imvCursa"
-        android:layout_width="220dp"
-        android:layout_height="220dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:layout_marginTop="2dp"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +93,7 @@
 
     <View
         android:id="@+id/view2"
-        android:layout_width="300dp"
+        android:layout_width="370dp"
         android:layout_height="2dp"
         android:layout_marginTop="10dp"
         android:background="@color/black"
@@ -93,9 +115,10 @@
         android:id="@+id/btnInscripcio"
         android:layout_width="250dp"
         android:layout_height="60dp"
+        android:textColor="@color/blau"
         android:textSize="29dp"
         android:layout_marginTop="28dp"
-        android:backgroundTint="@color/blau"
+        android:backgroundTint="@color/white"
         android:text="INSCRIU-TE!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

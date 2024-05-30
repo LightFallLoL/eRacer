@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.CursesFragment">
+    tools:context=".Fragments.CursesFragment"        android:background="@drawable/blue_white_background"
+
+    >
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -92,13 +94,15 @@
         android:elevation="3dp"/>
 
     <androidx.cardview.widget.CardView
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent" android:layout_marginTop="100dp">
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp">
+
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcyCurses"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/rcyCurses">
-        </androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
     </androidx.cardview.widget.CardView>
 
 

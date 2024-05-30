@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.InscripcioFragment">
+    tools:context=".Fragments.InscripcioFragment"
+    android:background="@drawable/blue_white_background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,6 +25,7 @@
             <TextView
                 android:id="@+id/tvCircuitCursa"
                 android:layout_width="wrap_content"
+                android:fontFamily="sans-serif-condensed"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="NOM CIRCUIT - NOM CURSA"
@@ -127,10 +129,11 @@
             android:id="@+id/btnInscripcio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Inscripció"
-            android:backgroundTint="@color/blau"
+
+            android:text="CONFIRMAR INSCRIPCIO"
+            android:backgroundTint="@color/white"
             android:textSize="18sp"
-            android:textColor="@android:color/white"
+            android:textColor="@color/blau"
             android:layout_marginBottom="16dp" />
 
     </LinearLayout>
