@@ -3,7 +3,9 @@ package org.milaifontanals.projecte.Model;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
-
+/**
+ * Classe Inscripcio amb les anotacions pertintents
+ */
 public class Inscripcio {
     @SerializedName("ins_id")
     private int insId;

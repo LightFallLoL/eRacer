@@ -3,7 +3,9 @@ package org.milaifontanals.projecte.Model;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
-
+/**
+ * Classe Registre amb les anotacions pertintents
+ */
 public class Registre {
     @SerializedName("reg_id")
     private int regId;

@@ -5,7 +5,9 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
+/**
+ * Classe Circuit amb les anotacions pertintents
+ */
 public class Circuit implements Serializable {
     @SerializedName("cir_id")
     private int id;

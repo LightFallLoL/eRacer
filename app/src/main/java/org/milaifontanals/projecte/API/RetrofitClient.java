@@ -10,7 +10,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import java.util.Date;
 import okhttp3.OkHttpClient;
 import java.util.concurrent.TimeUnit;
-
+/**
+ * Classe pel RetrofitClient.
+ */
 public class RetrofitClient {
     private static final String BASE_URL = "http://192.168.1.17/projecteApp/public/api/";
     private static final String BASE_URL_MILA = "http://10.132.10.26/projecteApp/public/api/";

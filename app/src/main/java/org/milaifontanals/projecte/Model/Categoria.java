@@ -3,7 +3,9 @@ package org.milaifontanals.projecte.Model;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-
+/**
+ * Classe Categoria amb les anotacions pertintents
+ */
 public class Categoria {
     @SerializedName("ccc_id")
     private int cccId;

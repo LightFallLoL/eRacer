@@ -8,6 +8,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * DateDeserializer per poder posarlo al RetrofitClient.
+ */
 public class DateDeserializer implements JsonDeserializer<Date> {
 
     private static final SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");

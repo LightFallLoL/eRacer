@@ -1,7 +1,9 @@
 package org.milaifontanals.projecte.Model;
 
 import com.google.gson.annotations.SerializedName;
-
+/**
+ * Classe Esport amb les anotacions pertintents
+ */
 public class Esport {
 
 

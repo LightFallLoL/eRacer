@@ -7,7 +7,9 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
+/**
+ * Classe Cursa amb les anotacions pertintents
+ */
 public class Cursa implements Serializable {
 
     @SerializedName("cur_id")

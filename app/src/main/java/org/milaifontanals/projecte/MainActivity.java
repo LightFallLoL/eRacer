@@ -11,7 +11,9 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
-
+/**
+ * Main activity que basicament definira el Drawer per a tota la aplicacio, el navigatonView tambe l'inicialitzara i passara per parametre l'esport el qual es vol buscar.
+ */
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;

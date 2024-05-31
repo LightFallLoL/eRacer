@@ -1,7 +1,9 @@
 package org.milaifontanals.projecte.Model;
 
 import com.google.gson.annotations.SerializedName;
-
+/**
+ * Classe EstatsCursa amb les anotacions pertintents
+ */
 public class EstatsCursa {
     @SerializedName("est_id")
     private int id;

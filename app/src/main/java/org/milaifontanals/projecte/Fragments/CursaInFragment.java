@@ -30,6 +30,9 @@ import org.milaifontanals.projecte.R;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+/**
+ *  Fragment que Permetra configurar el layout de Cursa Detall. (On apareixeran els circuits i les dades més profundament.
+ */
 public class CursaInFragment extends Fragment {
     private TextView txvTitol;
     private TextView txvDate;
@@ -90,7 +93,6 @@ public class CursaInFragment extends Fragment {
             btnInscripcio.setOnClickListener(v -> {
                 Circuit selectedCircuit = circuitAdapter.getSelectedCircuit();
                 if (selectedCircuit != null) {
-                    // Pasar los datos del circuito seleccionado a la siguiente pantalla o fragmento
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("cursa", cursa);
                     bundle.putSerializable("circuit", selectedCircuit);
@@ -108,7 +110,6 @@ public class CursaInFragment extends Fragment {
             btnInscripcio.setOnClickListener(v -> {
                 Circuit selectedCircuit = circuitAdapter.getSelectedCircuit();
                 if (selectedCircuit != null) {
-                    // Pasar los datos del circuito seleccionado a la siguiente pantalla o fragmento
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("cursa", cursa);
                     bundle.putSerializable("circuit", selectedCircuit);
@@ -129,7 +130,6 @@ public class CursaInFragment extends Fragment {
             btnInscripcio.setOnClickListener(v -> {
                 Circuit selectedCircuit = circuitAdapter.getSelectedCircuit();
                 if (selectedCircuit != null) {
-                    // Pasar los datos del circuito seleccionado a la siguiente pantalla o fragmento
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("cursa", cursa);
                     bundle.putSerializable("circuit", selectedCircuit);

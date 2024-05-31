@@ -12,6 +12,9 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
+/**
+ * Crides al webService.
+ */
 
 public interface ApiService {
         @GET("get_all_curses")

@@ -52,11 +52,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * InscripcioFragment que permet regular tot el layout d'inscripcio
+ */
 public class InscripcioFragment extends Fragment {
 
     List<Categoria> categoriesList = new ArrayList<>();
     Categoria categoriaSeleccionadaGlobal = null;
-    private FlexboxLayout flexboxLayout;
     private Spinner spnCategoria;
     private TextView txvTitol;
     private EditText etNif, etNomCognoms, etDataNaixement, etTelefon, etEmail;
@@ -97,7 +99,6 @@ public class InscripcioFragment extends Fragment {
         etTelefon = view.findViewById(R.id.etTelefon);
         etEmail = view.findViewById(R.id.etEmail);
         spnCategoria = view.findViewById(R.id.spnCategoria);
-        flexboxLayout = view.findViewById(R.id.flexboxLayout);
         etNumF = view.findViewById(R.id.etNumF);
         radioGroup = view.findViewById(R.id.rgFederat);
         radioButtonSi = view.findViewById(R.id.rbSi);

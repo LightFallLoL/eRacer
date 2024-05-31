@@ -1,7 +1,9 @@
 package org.milaifontanals.projecte.Model;
 
 import com.google.gson.annotations.SerializedName;
-
+/**
+ * Classe Checkpoint amb les anotacions pertintents
+ */
 public class Checkpoint {
     @SerializedName("chk_id")
     private int chkId;

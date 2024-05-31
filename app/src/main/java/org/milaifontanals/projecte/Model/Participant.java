@@ -1,7 +1,9 @@
 package org.milaifontanals.projecte.Model;
 
 import com.google.gson.annotations.SerializedName;
-
+/**
+ * Classe Participant amb les anotacions pertintents
+ */
 public class Participant {
     @SerializedName("par_id")
     private int id;

@@ -36,7 +36,6 @@ import org.milaifontanals.projecte.Model.EstatsCursa;
 import org.milaifontanals.projecte.Model.Response.CursaResponse;
 import org.milaifontanals.projecte.Model.Response.EstatCursaResponse;
 import org.milaifontanals.projecte.R;
-import org.milaifontanals.projecte.Utils.GridSpacingItemDecoration;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -121,7 +120,7 @@ public class CursesFragment extends Fragment {
         recyclerView.setLayoutManager(gridLayoutManager);
 
 
-        // Inicializar el adaptador con la lista vacía
+        // Inicializar el adaptador
         cursaAdapter = new CursaAdapter(this, cursaList);
         recyclerView.setAdapter(cursaAdapter);
 
@@ -188,12 +187,9 @@ public class CursesFragment extends Fragment {
                     if (sportTypeId != -1) {
                         cursaList = filterCursesBySportType(cursaList, sportTypeId);
                     }
-
-                    // Actualizar el adaptador con los datos recibidos
+                    //Actualitzar el adpater
                     cursaAdapter.setCursaList(cursaList);
                     cursaAdapter.notifyDataSetChanged();
-                } else {
-                    Log.e("CursesFragment", "Failed to load curses: " + response.message());
                 }
             }
 
@@ -324,13 +320,13 @@ public class CursesFragment extends Fragment {
                     estatCursaList = response.body().getEstatsCursa();
                     loadCurses();
                 } else {
-                    Log.e("CursesFragment", "Failed to load estats_cursa: " + response.message());
+                    Log.e("CursesFragment", "Error al cargar  estats_cursa: " + response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<EstatCursaResponse> call, Throwable t) {
-                Log.e("CursesFragment", "Error loading estats_cursa", t);
+                Log.e("CursesFragment", "Error al cargar estats_cursa", t);
             }
         });
     }

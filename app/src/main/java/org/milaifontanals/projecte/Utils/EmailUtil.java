@@ -10,6 +10,9 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+/**
+ * Classe que volia utilitzar per enviar mails pero em diu que requereixo d'un domini.
+ */
 public class EmailUtil {
     public static void enviarEmail(String correu, String cursa, String circuit, int idInscrit) {
         final String username = "eracernoreply@gmail.com";

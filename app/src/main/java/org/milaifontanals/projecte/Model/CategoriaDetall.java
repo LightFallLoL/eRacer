@@ -1,7 +1,9 @@
 package org.milaifontanals.projecte.Model;
 
 import com.google.gson.annotations.SerializedName;
-
+/**
+ * Classe CategoriaDetall amb les anotacions pertintents
+ */
 public class CategoriaDetall {
 
     @SerializedName("cat_id")

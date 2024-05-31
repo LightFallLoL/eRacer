@@ -34,6 +34,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * LiveResultFragment
+ */
 public class LiveResultFragment extends Fragment {
 
     private RecyclerView recyclerView;
