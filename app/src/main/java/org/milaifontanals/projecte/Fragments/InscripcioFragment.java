@@ -1,6 +1,7 @@
 package org.milaifontanals.projecte.Fragments;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,6 +41,7 @@ import org.milaifontanals.projecte.Utils.InscriptionCallback;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -66,6 +68,8 @@ public class InscripcioFragment extends Fragment {
     private Cursa selectedCursa;
     private Circuit selectedCircuit;
     private Button btnInscripcio;
+    private Calendar dataActual;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -85,6 +89,7 @@ public class InscripcioFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_inscripcio, container, false);
+        dataActual = Calendar.getInstance();
 
         etNif = view.findViewById(R.id.etNif);
         etNomCognoms = view.findViewById(R.id.etNomCognoms);
@@ -129,6 +134,17 @@ public class InscripcioFragment extends Fragment {
             }
         });
 
+        view.findViewById(R.id.btnDate).setOnClickListener(v ->{
+            int year = dataActual.get(Calendar.YEAR);
+            int month = dataActual.get(Calendar.MONTH);
+            int day = dataActual.get(Calendar.DAY_OF_MONTH);
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(v.getContext(), android.R.style.Theme_Holo_Dialog, (view1, year1, month1, dayOfMonth) -> {
+                dataActual.set(year1, month1, dayOfMonth);
+                etDataNaixement.setText(android.text.format.DateFormat.format("dd/MM/yyyy", dataActual));
+            }, year, month, day);
+            datePickerDialog.show();
+        });
         txvTitol.setText(selectedCircuit.getNom() + " - " + selectedCursa.getNom());
 
         btnInscripcio.setOnClickListener(v -> {

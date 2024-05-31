@@ -39,7 +39,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="NIF" />
+            android:hint="NIF"
+            android:inputType="textPersonName"/>
 
         <EditText
             android:id="@+id/etNomCognoms"
@@ -47,27 +48,54 @@
             android:layout_height="wrap_content"
             android:hint="Nom i cognoms"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            android:inputType="textPersonName"/>
 
-        <EditText
-            android:id="@+id/etDataNaixement"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Data Naixement"
-            android:layout_marginBottom="16dp" />
+        <LinearLayout
+
+            android:id="@+id/linearLayout"
+            android:layout_width="402dp"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_artist_name">
+
+            <Button
+                android:id="@+id/btnDate"
+                android:layout_width="120dp"
+                android:textSize="12dp"
+                android:layout_height="50dp"
+                android:text="PICK A DATE"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/blau"
+                android:layout_marginRight="30dp"></Button>
+
+            <EditText
+                android:id="@+id/etDataNaixement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:hint="Data Naixement" />
+        </LinearLayout>
+
 
         <EditText
             android:id="@+id/etTelefon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Telefon"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            android:inputType="phone"/>
 
         <EditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
+            android:inputType="textEmailAddress"
             android:layout_marginBottom="16dp" />
 
         <TextView
