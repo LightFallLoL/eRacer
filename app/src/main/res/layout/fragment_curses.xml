@@ -38,6 +38,8 @@
 
 
     <EditText
+        android:drawableLeft="@android:drawable/ic_menu_search"
+        android:hint="Buscar per Nom o Localitat"
         android:id="@+id/edtBuscador"
         android:layout_width="290dp"
         android:layout_height="30dp"

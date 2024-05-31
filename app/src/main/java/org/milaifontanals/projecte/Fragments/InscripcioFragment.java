@@ -1,7 +1,8 @@
 package org.milaifontanals.projecte.Fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,23 +20,35 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.flexbox.FlexboxLayout;
 import com.google.gson.JsonObject;
 
+import org.milaifontanals.projecte.API.ApiService;
+import org.milaifontanals.projecte.API.RetrofitClient;
 import org.milaifontanals.projecte.Model.Categoria;
-import org.milaifontanals.projecte.Model.CategoriaDetall;
 import org.milaifontanals.projecte.Model.Circuit;
 import org.milaifontanals.projecte.Model.Cursa;
-import org.milaifontanals.projecte.ParticipantService;
+import org.milaifontanals.projecte.Model.Inscripcio;
+import org.milaifontanals.projecte.Model.Response.InscripcioResponse;
+import org.milaifontanals.projecte.Utils.ParticipantService;
 import org.milaifontanals.projecte.R;
+import org.milaifontanals.projecte.Utils.InscriptionCallback;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class InscripcioFragment extends Fragment {
 
@@ -226,7 +239,11 @@ public class InscripcioFragment extends Fragment {
                 try {
                     Date dataNaix = sdf.parse(dataNaixement);
                     JsonObject requestJson = ParticipantService.createRequestJson(nif, nom, cognoms, dataNaix, telefon, email, num, insCccId, (long) selectedCircuit.getId(), (long) categoriaSeleccionadaGlobal.getCatId());
-                    ParticipantService.sendInscriptionRequest(requestJson);
+                    mostrarDialog(requestJson, email);
+                    NavController navController = NavHostFragment.findNavController(this);
+                    navController.navigate(R.id.action_inscripcioFragment_to_cursaFragment);
+
+
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -238,6 +255,79 @@ public class InscripcioFragment extends Fragment {
         }
     }
 
+    private void mostrarDialog(JsonObject requestJson, String email) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setCancelable(true);
+        builder.setTitle("CONFIRMAR PAGAMENT");
+        builder.setMessage("Estas segur de pagar "+ selectedCircuit.getPreu() +"€?");
+        builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                ParticipantService.sendInscriptionRequest(requestJson);
+
+                getInscrits(new InscriptionCallback() {
+                    @Override
+                    public void onInscriptionSuccess(int inscriptionId) {
+                        // Procedemos a enviar el email
+                        //EmailUtil.enviarEmail(email,selectedCursa.getNom(),selectedCircuit.getNom(),inscriptionId);
+
+
+                    }
+
+                    @Override
+                    public void onEmailSentSuccess() {
+                        Toast.makeText(getContext(), "Email enviat amb exit!", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(String error) {
+                        Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+
+    }
+
+
+    private void getInscrits(InscriptionCallback callback) {
+        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+        Call<InscripcioResponse> call = apiService.getAllInscripcions();
+        call.enqueue(new Callback<InscripcioResponse>() {
+            @Override
+            public void onResponse(Call<InscripcioResponse> call, Response<InscripcioResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Inscripcio> inscripciones = response.body().getInscripcions();
+                    if (!inscripciones.isEmpty()) {
+                        Inscripcio ultimaInscripcion = Collections.max(inscripciones, Comparator.comparingInt(Inscripcio::getInsId));
+                        callback.onInscriptionSuccess(ultimaInscripcion.getInsId());
+                    } else {
+                        callback.onFailure("No inscriptions available");
+                    }
+                } else {
+                    callback.onFailure("Failed to load inscriptions: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<InscripcioResponse> call, Throwable t) {
+                callback.onFailure("Error fetching inscriptions: " + t.getMessage());
+            }
+        });
+    }
+
+
     private int obtenirInsCccId(int cirId, int catId) {
         for (Categoria categoria : categoriesList) {
             if (categoria.getCirId() == cirId && categoria.getCatId() == catId) {
@@ -247,3 +337,5 @@ public class InscripcioFragment extends Fragment {
         return -1;
     }
 }
+
+

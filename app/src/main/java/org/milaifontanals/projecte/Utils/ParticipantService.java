@@ -1,4 +1,4 @@
-package org.milaifontanals.projecte;
+package org.milaifontanals.projecte.Utils;
 
 
 import com.google.gson.Gson;

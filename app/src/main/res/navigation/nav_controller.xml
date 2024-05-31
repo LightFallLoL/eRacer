@@ -25,7 +25,9 @@
             app:argType="org.milaifontanals.projecte.Model.Cursa" />
         <action
             android:id="@+id/action_cursaDetailFragment_to_inscripcioFragment"
-            app:destination="@id/inscripcioFragment" />
+            app:destination="@id/inscripcioFragment" /><action
+            android:id="@+id/action_cursaDetailFragment_to_liveResults"
+            app:destination="@id/liveResultsFragment" />
     </fragment>
     <fragment
         android:id="@+id/inscripcioFragment"
@@ -38,7 +40,26 @@
         <argument
             android:name="circuit"
             app:argType="org.milaifontanals.projecte.Model.Circuit" />
+        <action
+            android:id="@+id/action_inscripcioFragment_to_cursaFragment"
+            app:destination="@id/cursesFragment"/>
     </fragment>
+    <fragment
+        android:id="@+id/liveResultsFragment"
+        android:name="org.milaifontanals.projecte.Fragments.LiveResultFragment"
+        android:label="LiveResults Inscripcio"
+        tools:layout="@layout/fragment_results">
+        <argument
+            android:name="cursa"
+            app:argType="org.milaifontanals.projecte.Model.Cursa" />
+        <argument
+            android:name="circuit"
+            app:argType="org.milaifontanals.projecte.Model.Circuit" />
+        <action
+            android:id="@+id/action_liveResultsFragment_to_cursaFragment"
+            app:destination="@id/cursesFragment"/>
+    </fragment>
+
 
 
 

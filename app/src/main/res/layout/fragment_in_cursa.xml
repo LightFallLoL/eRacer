@@ -48,7 +48,9 @@
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        android:autoLink="web"
+        android:linksClickable="true"></TextView>
 
     <View
         android:id="@+id/view24"

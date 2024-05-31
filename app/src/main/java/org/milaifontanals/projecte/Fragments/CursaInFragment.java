@@ -1,6 +1,7 @@
 package org.milaifontanals.projecte.Fragments;
 
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +69,7 @@ public class CursaInFragment extends Fragment {
         txvDate.setText(dateFormat.format(cursa.getDataInici())); // Formatear fecha si es necesario
         txvLocation.setText(cursa.getLloc());
         txvWeb.setText(cursa.getWeb());
+        txvWeb.setMovementMethod(LinkMovementMethod.getInstance());
         ImageLoader.getInstance().displayImage(cursa.getUrlFoto(), imvCursa);
         // Configurar RecyclerView de circuits
         List<Circuit> circuits = cursa.getCircuits();
@@ -79,15 +81,22 @@ public class CursaInFragment extends Fragment {
 
         if ("Finalitzada".equals(cursa.getEstatCursa().getNom())) {
             btnInscripcio.setText("Mostrar Resultats");
-            btnInscripcio.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Navigate to the results fragment (assuming you will create this in the future)
-                    NavController navController = Navigation.findNavController(view);
-                    //navController.navigate(R.id.action_cursaDetailFragment_to_resultsFragment);
+            Button btnInscripcio = view.findViewById(R.id.btnInscripcio);
+            btnInscripcio.setOnClickListener(v -> {
+                Circuit selectedCircuit = circuitAdapter.getSelectedCircuit();
+                if (selectedCircuit != null) {
+                    // Pasar los datos del circuito seleccionado a la siguiente pantalla o fragmento
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("cursa", cursa);
+                    bundle.putSerializable("circuit", selectedCircuit);
+
+                    NavController navController = NavHostFragment.findNavController(this);
+                    navController.navigate(R.id.action_cursaDetailFragment_to_liveResults, bundle);
+                } else {
+                    Toast.makeText(getContext(), "No has seleccionat ningun circuit!", Toast.LENGTH_SHORT).show();
                 }
             });
-        }else {
+        }else if ("Inscripció Oberta".equals(cursa.getEstatCursa().getNom())) {
             Button btnInscripcio = view.findViewById(R.id.btnInscripcio);
             btnInscripcio.setOnClickListener(v -> {
                 Circuit selectedCircuit = circuitAdapter.getSelectedCircuit();
@@ -100,7 +109,26 @@ public class CursaInFragment extends Fragment {
                     NavController navController = NavHostFragment.findNavController(this);
                     navController.navigate(R.id.action_cursaDetailFragment_to_inscripcioFragment, bundle);
                 } else {
-                    Toast.makeText(getContext(), "No hay ningún circuito seleccionado", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "No has seleccionat ningun circuit!", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
+        else{
+            btnInscripcio.setText("Mostrar Live Resultats");
+            Button btnInscripcio = view.findViewById(R.id.btnInscripcio);
+            btnInscripcio.setOnClickListener(v -> {
+                Circuit selectedCircuit = circuitAdapter.getSelectedCircuit();
+                if (selectedCircuit != null) {
+                    // Pasar los datos del circuito seleccionado a la siguiente pantalla o fragmento
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("cursa", cursa);
+                    bundle.putSerializable("circuit", selectedCircuit);
+
+                    NavController navController = NavHostFragment.findNavController(this);
+                    navController.navigate(R.id.action_cursaDetailFragment_to_liveResults, bundle);
+                } else {
+                    Toast.makeText(getContext(), "No has seleccionat ningun circuit!", Toast.LENGTH_SHORT).show();
                 }
             });
 

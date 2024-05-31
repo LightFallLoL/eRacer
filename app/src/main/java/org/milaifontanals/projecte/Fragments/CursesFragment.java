@@ -179,9 +179,7 @@ public class CursesFragment extends Fragment {
                 if (response.isSuccessful()) {
                     List<Cursa> curses = response.body().getCurses();
 
-                    for (Cursa cursa : curses) {
-                        Log.d("CursesFragment", "Cursa: " +cursa.toString());
-                    }
+
                     sortCursesByDateDesc(curses);
                     curses = filterCursesByState(curses);
                     cursaList = new ArrayList<>(curses);
